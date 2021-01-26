@@ -9,6 +9,3 @@ class Loan:
         self.loan_type = loan_type
         self.balance = 0.0
         self.amount = 0.0
-        
-
-    
