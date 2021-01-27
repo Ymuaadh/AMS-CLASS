@@ -5,17 +5,22 @@ from typing import List
 class AccountHolderManager:
     account_holders: List[AccountHolder] = []
 
-    def create_account_holder(self, email: str, password: str, first_name: str, last_name=None, phone=None,
+    def create_account_holder(self, email: str, password: str, confirm_password: str, first_name: str, last_name=None, phone=None,
                               middle_name=None):
-        # getting id for an account Holder
-        owner_id = self.__get_id
-        # creating an instance of Account Holder
-        owner = AccountHolder(id=owner_id, email=email,
-                              first_name=first_name)
-        owner.last_name = last_name
-        owner.middle_name = middle_name
-        owner.phone = phone
-        return True
+        # checks if the password is correct
+        if password == confirm_password:
+            # getting id for an account Holder
+            owner_id = self.__get_id
+            # creating an instance of Account Holder
+            owner = AccountHolder(id=owner_id, email=email,
+                                  first_name=first_name)
+            owner.last_name = last_name
+            owner.middle_name = middle_name
+            owner.phone = phone
+            self.account_holders.append(owner)
+            return True
+        else:
+            return False
 
     def update_account_holder(self, email: str, first_name: str, last_name: str, phone: str, middle_name: str):
         # Find the account_holder to be edited
@@ -65,6 +70,7 @@ class AccountHolderManager:
         account_holder = self.__find(email)
         if account_holder != None:
             account_holder.change_password(password=new_password)
+            return True
         else:
             return False
 
