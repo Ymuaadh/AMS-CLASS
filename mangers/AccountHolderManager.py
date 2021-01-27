@@ -10,7 +10,7 @@ class AccountHolderManager:
         # checks if the password is correct
         if password == confirm_password:
             # getting id for an account Holder
-            owner_id = self.__get_id
+            owner_id = self.__get_id()
             # creating an instance of Account Holder
             owner = AccountHolder(id=owner_id, email=email,
                                   first_name=first_name)
@@ -69,7 +69,7 @@ class AccountHolderManager:
     def change_password(self, email: str, new_password: str):
         account_holder = self.__find(email)
         if account_holder != None:
-            account_holder.change_password(password=new_password)
+            account_holder.password = new_password
             return True
         else:
             return False

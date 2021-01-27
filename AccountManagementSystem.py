@@ -30,13 +30,13 @@ def handle_account_holder_menu(action):
         password = str(input('Enter Your password: '))
         confirm_password = str(input('Confirm your password: '))
         first_name = str(input(
-            'Enter your first name'))
+            'Enter your first name: '))
         last_name = str(input(
-            'Enter your last name' '\t' 'if the last name is not given None will be used'))
+            'Enter your last name' '\t' 'if the last name is not given None will be used: '))
         middle_name = str(input(
-            'Enter your middle name' '\t' 'if the middle name is not given None will be used'))
+            'Enter your middle name' '\t' 'if the middle name is not given None will be used: '))
         phone = str(input(
-            'Enter your phone number' '\t' 'if phone number is not given None will be used'))
+            'Enter your phone number' '\t' 'if phone number is not given None will be used: '))
         holder = acount_holder_manager.create_account_holder(
             email=email, password=password, confirm_password=confirm_password, first_name=first_name, last_name=last_name, phone=phone, middle_name=middle_name)
         if holder is True:
@@ -55,11 +55,11 @@ def handle_account_holder_menu(action):
             first_name = str(input(
                 'Enter your first name'))
             last_name = str(input(
-                'Enter your last name' '\t' 'if the last name is not given None will be used'))
+                'Enter your last name' '\t' 'if the last name is not given None will be used: '))
             middle_name = str(input(
-                'Enter your middle name' '\t' 'if the middle name is not given None will be used'))
+                'Enter your middle name' '\t' 'if the middle name is not given None will be used: '))
             phone = str(input(
-                'Enter your phone number' '\t' 'if phone number is not given None will be used'))
+                'Enter your phone number' '\t' 'if phone number is not given None will be used: '))
             new_holder = acount_holder_manager.update_account_holder(
                 email=email, first_name=first_name, last_name=last_name, phone=phone, middle_name=middle_name)
             if new_holder is True:
@@ -99,8 +99,7 @@ def handle_account_holder_menu(action):
     elif action == 6:
         acount_holder_manager.list_account_holders()
 
-
-show_sub_menu(1)
+    show_sub_menu(1)
 
 
 def main():
