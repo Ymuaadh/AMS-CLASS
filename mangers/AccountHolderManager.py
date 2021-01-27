@@ -1,8 +1,9 @@
 from models.AccountHolder import AccountHolder
+from typing import List
 
 
 class AccountHolderManager:
-    account_holders = []
+    account_holders: List[AccountHolder] = []
 
     def create_account_holder(self, email: str, password: str, first_name: str, last_name=None, phone=None,
                               middle_name=None):
@@ -10,7 +11,7 @@ class AccountHolderManager:
         owner_id = self.__get_id
         # creating an instance of Account Holder
         owner = AccountHolder(id=owner_id, email=email,
-                              first_name=first_name, password=password)
+                              first_name=first_name)
         owner.last_name = last_name
         owner.middle_name = middle_name
         owner.phone = phone
@@ -59,6 +60,13 @@ class AccountHolderManager:
                 return account_holder
             else:
                 return False
+
+    def change_password(self, email: str, new_password: str):
+        account_holder = self.__find(email)
+        if account_holder != None:
+            account_holder.change_password(password=new_password)
+        else:
+            return False
 
     def __get_id(self):
         # gets the length of the account holder list and try to return the length + 1 as id if the account holder
