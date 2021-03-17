@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<div class="col-md-6 pl-5">
+    <div class="card">
+        <div class="card-header bg-dark">
+            <p class="card-title text-light">
+                {{ title }}
+            </p>
+        </div>
+
+        <form action="{% url 'withdraw' %}?next={{ next }}" method="post">
+            {% csrf_token %}
+            <div class="card-body bg-light">
+                <div class="form-row">
+                    <div class="form-group col-12 m-auto">
+                        <label class="form-check-label text-dark" for="account_number">Account Number:</label>
+                        <input name="account_number" id="account_number" class="form-control" type="text">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-12 m-auto">
+                        <label class="form-check-label text-dark" for="amount">Amount:</label>
+                        <input name="amount" id="amount" class="form-control" type="text">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-12 m-auto">
+                        <label class="form-check-label text-dark" for="account_pin">PIN:</label>
+                        <input name="account_pin" id="account_pin" class="form-control" type="password">
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light">
+                <button type="submit" class="btn btn-primary text-light align-content-center">Withdraw
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

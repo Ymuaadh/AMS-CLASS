@@ -1,0 +1,55 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mt-5">
+                <div class="card" id="card">
+                    <div class="card-header">
+                        <p class="card-title" id="headerfill">
+                            {{ title }}
+                        </p>
+                    </div>
+                    <form action="{% url 'transfer' %}" method="post">
+                        {% csrf_token %}
+                        <div class="card-body" id="cardbody">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label class="form-check-label" for="account_number" id="registerfill">Account
+                                        Number</label>
+                                    <input name="account_number" id="username" class="form-control" type="text">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="form-check-label" for="receiver_account_number" id="registerfill">Recipient Account
+                                        Number</label>
+                                    <input name="receiver_account_number" id="receiver_account_number" class="form-control" type="text">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="form-check-label" for="pin" id="registerfill">PIN</label>
+                                    <input name="pin" id="pin" class="form-control" type="password">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="form-check-label" for="transfer_amount" id="registerfill">Amount to
+                                        Transfer</label>
+                                    <input name="transfer_amount" id="transfer_amount" class="form-control" type="number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-outline-dark col-md-12">TRANSFER
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{##}
+{#def __get_attribute_from_request_for_transfer(request):#}
+{#    transfer_dto = Transfer()#}
+{#    transfer_dto.account_number = request.POST['account_number']#}
+{#    transfer_dto.amount = request.POST['amount']#}
+{#    transfer_dto.account_pin = request.POST['pin']#}
+{#    transfer_dto.receiver_account_number = request.POST['receiver_account_number']#}
+{#    return transfer_dto#}

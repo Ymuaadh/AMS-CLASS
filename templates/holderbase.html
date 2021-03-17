@@ -1,0 +1,187 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>account holder</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'ams/images/logo2.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'ams/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'ams/css/work.css' %}">
+    <link rel="stylesheet" href="{% static 'ams/css/edit.css' %}" class="rel">
+    <script src="{% static 'ams/js/sweetalert2.min.js' %}"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg p-3 bg-dark">
+    <a class="navbar-brand push-10 ml-2 text-light  push-left" href="{% url 'home' %}"><img
+            src="{% static 'ams/images/logo2.png' %}" width="30" height="30"
+            class="d-inline-block align-top" alt="">codeBank.</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link text-dark pr-5" href="#"> Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark pr-5" href="#">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled text-dark" href="#" tabindex="-1" aria-disabled="true">Help</a>
+            </li>
+        </ul>
+        {% if not user.is_authenticated %}
+            <div class="form-inline my-2 my-lg-0">
+                <a class="btn btn-primary my-2 my-sm-0 push-left" href="{% url 'register_account_holder' %}">Get
+                    codeAccount</a>
+            </div>
+        {% else %}
+            <div>
+                <li class="btn btn-primary nav-item dropdown push-left">
+                    <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ user.username }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                    </div>
+                </li>
+            </div>
+        {% endif %}
+    </div>
+</nav>
+<div class="wrapper">
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Dashboard</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <p>Account Holder Home</p>
+            <li class="active">
+                <a href="{% url 'withdraw' %}" class="">Withdraw</a>
+            </li>
+            <li class="active">
+                <a href="{% url 'deposit' %}" class="">Deposit</a>
+            </li>
+            <li class="active">
+                <a href="{% url 'transfer' %}" class="">Transfer</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Account Transactions
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                    <a class="dropdown-item" href="#">Transaction History</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Loan Transactions
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                    <a class="dropdown-item" href="#">Transaction History</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Overdraft Transactions
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                    <a class="dropdown-item" href="#">Transaction History</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>S
+                </div>
+            </li>
+            <li><a href="#" data-toggle="modal" data-target="#modalRegister">Customer Care</a></li>
+        </ul>
+    </nav>
+    <div id="content">
+
+        {% block content %}
+        {% endblock %}
+    </div>
+    <div id="modalRegister" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Make Appointment with a department</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="">
+                            <label for="department" class="form-check-label">Department:</label>
+                            <select class="form-control" onclick="">
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="">
+                            <label class="form-check-label">Time: </label>
+                            <select class="form-control" name="time">
+                                <option>
+
+                                </option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="date" class="form-check-label">Appointment Date:</label>
+                            <input class="form-control" type="date" id="date" name="date">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="{% static 'ams/jquery/jquery.slim.min.js' %}"></script>
+<script src="{% static 'ams/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'ams/js/popper.min.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active')
+        });
+
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#appint').onclick(function () {
+            $.ajax({
+                data: $(this).serialize(),
+                url: "#",
+
+                success: function (response) {
+
+                }
+            })
+
+        })
+    })
+</script>
+</body>
+</html>
